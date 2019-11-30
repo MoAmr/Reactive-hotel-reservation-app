@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ReservationRequest, ReservationService} from "./reservation.service";
+import {Reservation, ReservationRequest, ReservationService} from "./reservation.service";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -20,6 +20,7 @@ export class AppComponent {
   currentCheckOutVal: string;
   currentPrice: number;
   currentRoomNumber: number;
+  currentReservations: Reservation[];
 
   ngOnInit() {
     this.roomSearchForm = new FormGroup({
@@ -51,10 +52,19 @@ export class AppComponent {
       new Room('140', '140', '200'),
       new Room('200', '200', '250')
     ];
+
+    this.getCurrentReservations();
+  }
+
+  getCurrentReservations() {
+    this.reservationService.getReservations()
+      .subscribe(getResult => {
+        console.log(getResult);
+        this.currentReservations = getResult;
+      })
   }
 
   createReservation() {
-
     this.reservationService.createReservation(
       new ReservationRequest(this.currentRoomNumber,
         this.currentCheckInVal,
