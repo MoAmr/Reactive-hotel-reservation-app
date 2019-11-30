@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {ReservationService} from "./reservation.service";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,11 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'reservation-app';
 
-  constructor(private http: HttpClient) {
+  constructor(private reservationService: ReservationService) {
   }
-
-  private baseUrl: string = 'http://localhost:8080';
-  private reservationUrl: string = this.baseUrl + '/room/v1/reservation/';
 
   rooms: Room[];
 
