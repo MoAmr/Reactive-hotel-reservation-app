@@ -70,9 +70,10 @@ export class AppComponent {
         this.currentCheckInVal,
         this.currentCheckOutVal,
         this.currentPrice)
-    ).subscribe(postResult =>
-      console.log(postResult)
-    );
+    ).subscribe(postResult => {
+      console.log(postResult);
+      this.getCurrentReservations();
+    });
   }
 }
 
